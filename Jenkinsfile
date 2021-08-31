@@ -8,7 +8,7 @@ node {
         checkout scm
         sh "git rev-parse --short HEAD > commit-id"
         tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-        appname = "ci-cd_overview:"
+        appname = "flask-alpine:"
         // registryHost name modified to use DockerHub
         registryHost = "strobodov/" //"127.0.0.1:30400/"
         env.imageName = "${registryHost}${appname}${tag}"
