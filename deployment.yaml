@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-alpine
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 5000
+  selector:
+    app: flask-alpine
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-alpine
+  namespace: default
+  labels:
+    app: flask-alpine
+spec:
+  selector:
+    matchLabels:
+      app: flask-alpine
+      tier: flask-alpine
+  template:
+    metadata:
+        name: flask-alpine
+        namespace: default
+        labels: 
+          app: flask-alpine
+          tier: flask-alpine
+    spec:
+      containers:
+      - image: 127.0.0.1:30400/flask-alpine:version
+        name: flask-alpine
+        ports:
+        - containerPort: 80
+          name: flask-alpine
