@@ -1,3 +1,8 @@
+environment {
+    registry = "strobodov/flask-alpine"
+    registryCredential = 'dockerhub'
+    }
+
 node {
     stage('Checkout SCM') {
         checkout scm
@@ -45,7 +50,7 @@ node {
     
     stage ('Push') {
         // modified to use DockerHub
-        docker.withRegistry('', 'dockerhub'){
+        docker.withRegistry('', 'registryCredential'){
             sh "docker push ${imageName}"
         }
     }
