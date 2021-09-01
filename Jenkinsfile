@@ -10,7 +10,7 @@ node {
         tag = readFile('commit-id').replace("\n", "").replace("\r", "")
         appname = "flask-alpine:"
         // registryHost name modified to use DockerHub
-        registryHost = "strobodov/" //"127.0.0.1:30400/"
+        registryHost = "Strobodov/" //"127.0.0.1:30400/"
         env.imageName = "${registryHost}${appname}${tag}"
         env.BUILD_TAG=tag
     }
